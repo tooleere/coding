@@ -1,9 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent } from '@/components/ui/card';
 import type { Task } from '@/types/task';
 
 interface TaskFormProps {
@@ -52,32 +49,30 @@ export function TaskForm({ onTaskAdded }: TaskFormProps): JSX.Element {
   };
 
   return (
-    <Card className="w-full">
-      <CardContent className="pt-6">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex gap-2">
-            <Input
-              type="text"
-              placeholder="Add a new task..."
-              value={title}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
-              className="flex-1"
-              disabled={isLoading}
-            />
-            <Button 
-              type="submit" 
-              disabled={isLoading || !title.trim()}
-              className="px-6"
-            >
-              {isLoading ? 'Adding...' : 'Add Task'}
-            </Button>
-          </div>
-          
-          {error && (
-            <p className="text-red-600 text-sm">{error}</p>
-          )}
-        </form>
-      </CardContent>
-    </Card>
+    <div className="w-full border rounded-md p-4 bg-white shadow-sm">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="flex gap-2">
+          <input
+            type="text"
+            placeholder="Add a new task..."
+            value={title}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
+            className="flex-1 px-3 py-2 border rounded"
+            disabled={isLoading}
+          />
+          <button 
+            type="submit" 
+            disabled={isLoading || !title.trim()}
+            className="px-6 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
+          >
+            {isLoading ? 'Adding...' : 'Add Task'}
+          </button>
+        </div>
+        
+        {error && (
+          <p className="text-red-600 text-sm">{error}</p>
+        )}
+      </form>
+    </div>
   );
 }
