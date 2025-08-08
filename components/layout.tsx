@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ResponseLogger } from "@/components/response-logger";
 import { cookies } from "next/headers";
 
 const geistSans = localFont({
@@ -36,7 +35,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <ResponseLogger />
       </body>
     </html>
   );
